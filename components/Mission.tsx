@@ -1,27 +1,30 @@
-
 import React from 'react';
+import { Container } from './ui';
 
 const Mission: React.FC = () => {
   return (
-    <section id="mission" className="py-32 md:py-48 bg-white text-black">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-start">
-          <div className="reveal">
-            <h2 className="text-xs tracking-widest uppercase font-bold text-black/40 mb-8">Who We Are</h2>
-            <p className="text-3xl md:text-5xl font-serif leading-tight">
-              Ascend operates at the intersection of student potential and professional demand.
+    <section id="mission" className="bg-paper py-24 text-ink md:py-32">
+      <Container>
+        <div className="stagger grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
+          <h2
+            style={{ '--i': 0 } as React.CSSProperties}
+            className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl xl:text-6xl"
+          >
+            An extended placement office for <span className="mark">Tier-2 and Tier-3 colleges.</span>
+          </h2>
+          <div style={{ '--i': 1 } as React.CSSProperties} className="space-y-6 text-lg leading-relaxed text-ink/70 md:text-xl">
+            <p>
+              ASCEND works with colleges in emerging cities to run their placement function. We handle corporate
+              outreach, recruiter relationships and student preparation, the same work a Tier-1 placement office does.
             </p>
-          </div>
-          <div className="reveal md:mt-24">
-            <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light mb-8">
-              We serve as the sophisticated architectural layer for Tier-2 and Tier-3 institutions—functioning as an extended placement board that delivers high-impact recruitment infrastructure to colleges in emerging economic hubs.
-            </p>
-            <p className="text-lg md:text-xl text-black/70 leading-relaxed font-light">
-              By engineering connections between high-potential students and the global corporate ecosystem, we ensure that geography no longer dictates professional trajectory.
+            <p>
+              Students at these colleges are often as capable as their peers in large cities. They have fewer ways to
+              reach recruiters. We build those connections so that where a student studies does not limit where they
+              can work.
             </p>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

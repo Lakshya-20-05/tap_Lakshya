@@ -13,25 +13,27 @@ import Footer from './components/Footer';
 const App: React.FC = () => {
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1,
+      threshold: 0.12,
+      rootMargin: '0px 0px -8% 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal, .stagger, .draw');
     revealElements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="flex flex-col w-full min-h-screen font-sans selection:bg-white selection:text-black">
+    <div className="flex min-h-screen w-full flex-col font-sans">
       <Navbar />
       <main>
         <Hero />

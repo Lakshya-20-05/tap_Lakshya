@@ -1,39 +1,56 @@
-
 import React from 'react';
+import { Button, Container } from './ui';
+
+const pillars = [
+  { title: 'Merit-based', desc: 'Students are put forward on ability and nothing else.' },
+  { title: 'Transparent', desc: 'Partner colleges see the same data and outcomes we do.' },
+  { title: 'Outcome-driven', desc: 'We measure our work by the students who get hired.' },
+  { title: 'Long-term', desc: 'We build recruiter relationships that last beyond a single season.' },
+];
 
 const WhyAscend: React.FC = () => {
-  const pillars = [
-    { title: "Merit-Based", subtitle: "Integrity over everything." },
-    { title: "Transparent", subtitle: "Clear data, real outcomes." },
-    { title: "Outcome-Driven", subtitle: "Measured by success stories." },
-    { title: "Ecosystem-Thinking", subtitle: "Building for the future." }
-  ];
-
   return (
-    <section className="py-32 md:py-48 bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-          <div className="reveal">
-            <h2 className="text-xs tracking-widest uppercase font-bold text-white/40 mb-8">The Response</h2>
-            <h3 className="text-5xl md:text-7xl font-serif mb-12">The Answer to the Recruitment Question.</h3>
-            <p className="text-xl text-white/60 font-light leading-relaxed mb-12">
-              Ascend is built on the philosophy that quality talent exists everywhere, but infrastructure does not. We provide the ecosystem that makes talent discoverable.
+    <section id="why" className="bg-ink py-24 text-white md:py-32">
+      <Container>
+        <div className="stagger grid grid-cols-1 gap-10 md:grid-cols-2 md:items-end md:gap-12">
+          <h2
+            style={{ '--i': 0 } as React.CSSProperties}
+            className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl xl:text-6xl"
+          >
+            Why colleges work with <span className="mark">ASCEND</span>
+          </h2>
+          <div style={{ '--i': 1 } as React.CSSProperties} className="md:justify-self-end">
+            <p className="max-w-2xl text-lg leading-relaxed text-white/60">
+              Capable students are spread across the country, but access to recruiters is concentrated in a few
+              cities. We give partner colleges that access and help their students make use of it.
             </p>
-            <button className="px-10 py-5 bg-white text-black text-xs tracking-widest uppercase font-bold">
-              Explore Our Results
-            </button>
+            <Button href="#contact" variant="light" className="mt-8">
+              Talk to our team
+            </Button>
           </div>
-          
-          <div className="grid grid-cols-1 gap-12 reveal">
-            {pillars.map((pillar, i) => (
-              <div key={i} className="group cursor-default">
-                <h4 className="text-3xl md:text-4xl font-serif italic mb-2 group-hover:pl-4 transition-all duration-500">{pillar.title}</h4>
-                <p className="text-white/40 tracking-widest uppercase text-xs font-medium">{pillar.subtitle}</p>
+        </div>
+
+        <div className="relative mt-16 md:mt-20">
+          <div className="draw absolute inset-x-0 top-0 h-px bg-white/15" />
+          <div className="stagger grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+            {pillars.map((p, i) => (
+              <div
+                key={p.title}
+                style={{ '--i': i } as React.CSSProperties}
+                className={`group border-b border-white/15 py-10 xl:border-b-0 xl:py-12 ${
+                  i % 2 === 1 ? 'sm:border-l sm:pl-8' : 'sm:pr-8'
+                } ${i > 0 ? 'xl:border-l xl:pl-8' : ''} ${i < 3 ? 'xl:pr-8' : ''}`}
+              >
+                <h3 className="flex items-center gap-3 font-display text-2xl font-semibold tracking-[-0.015em]">
+                  <span className="h-2 w-0 rounded-full bg-ember transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-2" />
+                  <span className="transition-colors duration-300 group-hover:text-ember">{p.title}</span>
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-white/60">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
