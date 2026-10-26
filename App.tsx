@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full min-h-screen font-sans selection:bg-white selection:text-black">
+    <div className="flex min-h-screen w-full flex-col font-sans">
       <Navbar />
       <main>
         <Hero />

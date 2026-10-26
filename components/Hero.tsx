@@ -1,35 +1,133 @@
-
 import React from 'react';
+import { ArrowRight, Eyebrow } from './ui';
+
+const pipeline = [
+  { step: 'Institution onboarded', meta: 'Placement board set up', done: true },
+  { step: 'Students assessed', meta: 'Skill & role-fit mapping', done: true },
+  { step: 'Readiness training', meta: 'CV, interviews, domain prep', done: true },
+  { step: 'Partner interviews', meta: 'Startups to Fortune 500', done: false },
+];
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center bg-black pt-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="max-w-4xl reveal">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif leading-[0.9] tracking-tight mb-8">
-  Bridging <br />
-  <span className="italic">Untapped</span> Talent <br />
-  with Opportunity<span className="text-orange-500">.</span>
-</h1>
+    <section id="top" className="grain relative overflow-hidden bg-ink pt-36 md:pt-44">
+      {/* Backdrop */}
+      <div className="bg-grid-dark mask-fade pointer-events-none absolute inset-0" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-ember/[0.12] blur-[120px]" />
 
-          <p className="text-lg md:text-xl text-white/60 font-light tracking-wide max-w-2xl mb-12">
-            A premium institutional partner focused on transforming the recruitment landscape for emerging hubs.
+      <div className="relative mx-auto grid max-w-site grid-cols-1 items-center gap-16 px-6 lg:grid-cols-12 lg:gap-10">
+        <div className="reveal lg:col-span-7">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] py-1.5 pl-1.5 pr-4 text-xs text-white/70">
+            <span className="grid h-5 w-5 place-items-center rounded-full bg-ember/15">
+              <span className="h-1.5 w-1.5 rounded-full bg-ember" />
+            </span>
+            Placement partner for Tier-2 &amp; Tier-3 institutions
+          </div>
+
+          <h1 className="text-[44px] font-semibold leading-[1.02] tracking-[-0.035em] text-white sm:text-6xl lg:text-[76px]">
+            Bridging{' '}
+            <span className="font-serif text-[1.12em] font-normal italic tracking-[-0.01em] text-white/90">untapped</span>
+            <br className="hidden sm:block" /> talent with opportunity<span className="text-ember">.</span>
+          </h1>
+
+          <p className="mt-7 max-w-xl text-base leading-relaxed text-white/55 md:text-lg">
+            A premium institutional partner transforming the recruitment landscape for emerging hubs — so geography
+            no longer decides a student&rsquo;s career.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6">
-            <button className="group relative px-8 py-4 bg-white text-black text-xs tracking-widest uppercase font-bold overflow-hidden transition-all duration-500">
-              <span className="relative z-10">Initiate Partnership</span>
-            </button>
-            <button className="px-8 py-4 border border-white/10 text-white text-xs tracking-widest uppercase font-bold hover:bg-white/5 transition-all duration-500">
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#contact"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-ember px-7 py-3.5 text-sm font-semibold text-ink transition-all duration-300 hover:bg-ember-400 hover:shadow-[0_0_40px_-8px_rgba(249,115,22,0.7)]"
+            >
+              Initiate Partnership
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="#approach"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/30 hover:bg-white/5"
+            >
               View Our Model
-            </button>
+            </a>
+          </div>
+        </div>
+
+        {/* Pipeline card */}
+        <div className="reveal reveal-delay-2 lg:col-span-5">
+          <div className="relative mx-auto max-w-md rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-2 shadow-2xl shadow-black/50 backdrop-blur">
+            <div className="rounded-[20px] border border-white/5 bg-ink-800/80 p-6">
+              <div className="mb-6 flex items-center justify-between">
+                <Eyebrow tone="dark">Placement pipeline</Eyebrow>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> Active
+                </span>
+              </div>
+
+              <ol className="relative space-y-1">
+                {pipeline.map((p, i) => (
+                  <li key={p.step} className="relative flex items-start gap-4 rounded-xl p-3 transition-colors hover:bg-white/[0.03]">
+                    {i < pipeline.length - 1 && (
+                      <span className="absolute left-[25px] top-10 h-[calc(100%-16px)] w-px bg-white/10" />
+                    )}
+                    <span
+                      className={`relative z-10 mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border text-[10px] font-semibold ${
+                        p.done ? 'border-ember/40 bg-ember/15 text-ember-400' : 'border-white/15 bg-ink text-white/40'
+                      }`}
+                    >
+                      {p.done ? (
+                        <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.8">
+                          <path d="M2.5 6.5l2.2 2L9.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      ) : (
+                        i + 1
+                      )}
+                    </span>
+                    <div>
+                      <div className={`text-sm font-medium ${p.done ? 'text-white' : 'text-white/60'}`}>{p.step}</div>
+                      <div className="mt-0.5 text-xs text-white/40">{p.meta}</div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-6 border-t border-white/5 pt-5">
+                <div className="mb-2 flex items-center justify-between text-xs">
+                  <span className="text-white/50">Readiness</span>
+                  <span className="font-mono text-white/70">Role-fit first</span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
+                  <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-ember-600 to-ember-400" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-      {/* Decorative subtle lines */}
-      <div className="absolute top-0 right-0 h-full w-px bg-white/5 left-1/4"></div>
-      <div className="absolute top-0 right-0 h-full w-px bg-white/5 left-2/4"></div>
-      <div className="absolute top-0 right-0 h-full w-px bg-white/5 left-3/4"></div>
+
+      {/* Capability strip */}
+      <div className="relative mt-24 border-t border-white/5 py-6">
+        <div className="flex w-max animate-marquee gap-12 whitespace-nowrap pr-12 text-sm text-white/35">
+          {[0, 1].map((k) => (
+            <div key={k} className="flex gap-12" aria-hidden={k === 1}>
+              {[
+                'Placement Outsourcing',
+                'Corporate Relations',
+                'Institutional Branding',
+                'CV Architecture',
+                'Interview Strategy',
+                'Skill Alignment',
+                'Role-Fit Placement',
+                'Partner Integration',
+              ].map((t) => (
+                <span key={t} className="flex items-center gap-12">
+                  {t}
+                  <span className="text-ember/60">✦</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };
