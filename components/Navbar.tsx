@@ -1,22 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowRight } from './ui';
+import { ArrowRight, Container, Logo } from './ui';
 
 const links = [
-  { href: '#mission', label: 'Mission' },
-  { href: '#approach', label: 'Approach' },
-  { href: '#services', label: 'What We Do' },
-  { href: '#philosophy', label: 'Philosophy' },
+  { id: 'mission', label: 'About' },
+  { id: 'approach', label: 'Approach' },
+  { id: 'services', label: 'Services' },
+  { id: 'why', label: 'Why Ascend' },
+  { id: 'philosophy', label: 'Philosophy' },
 ];
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState('');
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Highlight the link for the section currently in view
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.getElementById(l.id))
+      .filter((el): el is HTMLElement => el !== null);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -27,80 +46,81 @@ const Navbar: React.FC = () => {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:pt-5">
-      <nav
-        className={`mx-auto flex h-14 max-w-site items-center justify-between rounded-full border px-3 pl-5 transition-all duration-500 ${
-          scrolled || open
-            ? 'border-white/10 bg-ink-800/80 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl'
-            : 'border-transparent bg-transparent'
-        }`}
-        aria-label="Primary"
-      >
-        <a href="#top" className="flex items-center gap-2.5 text-white" onClick={() => setOpen(false)}>
-          <span className="relative grid h-7 w-7 place-items-center rounded-lg bg-white text-ink">
-            <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
-              <path d="M10 2l8 15H2z" />
-            </svg>
-            <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-ember ring-2 ring-ink" />
-          </span>
-          <span className="text-[15px] font-semibold tracking-tight">Ascend</span>
-        </a>
-
-        <div className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-4 py-2 text-[13px] font-medium text-white/60 transition-colors duration-300 hover:bg-white/5 hover:text-white"
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2">
-          <a
-            href="#contact"
-            className="group hidden items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-ink transition-colors duration-300 hover:bg-ember sm:inline-flex"
-          >
-            Consult With Us
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled || open ? 'border-white/10 bg-ink/95 backdrop-blur' : 'border-transparent bg-transparent'
+      }`}
+    >
+      <Container>
+        <nav className="flex h-[72px] items-center justify-between gap-8" aria-label="Primary">
+          <a href="#top" className="text-white" onClick={() => setOpen(false)}>
+            <Logo />
           </a>
-          <button
-            type="button"
-            className="grid h-10 w-10 place-items-center rounded-full text-white hover:bg-white/5 md:hidden"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="relative block h-3 w-5">
-              <span
-                className={`absolute left-0 h-px w-5 bg-current transition-all duration-300 ${
-                  open ? 'top-1.5 rotate-45' : 'top-0'
+
+          <div className="hidden h-full items-center gap-9 lg:flex">
+            {links.map((l) => (
+              <a
+                key={l.id}
+                href={`#${l.id}`}
+                aria-current={active === l.id ? 'true' : undefined}
+                className={`relative flex h-full items-center text-[15px] transition-colors duration-200 hover:text-white ${
+                  active === l.id ? 'text-white' : 'text-white/60'
                 }`}
-              />
-              <span
-                className={`absolute left-0 h-px w-5 bg-current transition-all duration-300 ${
-                  open ? 'top-1.5 -rotate-45' : 'top-3'
-                }`}
-              />
-            </span>
-          </button>
-        </div>
-      </nav>
+              >
+                {l.label}
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-0.5 bg-ember transition-transform duration-300 ${
+                    active === l.id ? 'scale-x-100' : 'scale-x-0'
+                  }`}
+                />
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#contact"
+              className="group hidden items-center gap-2 bg-ember px-5 py-2.5 text-[15px] font-medium text-ink transition-colors duration-200 hover:bg-ember-400 sm:inline-flex"
+            >
+              Contact us
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </a>
+            <button
+              type="button"
+              className="grid h-11 w-11 place-items-center text-white lg:hidden"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="relative block h-3.5 w-6">
+                <span
+                  className={`absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 ${
+                    open ? 'top-1.5 rotate-45' : 'top-0'
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 h-0.5 w-6 bg-current transition-all duration-300 ${
+                    open ? 'top-1.5 -rotate-45' : 'top-3'
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
+        </nav>
+      </Container>
 
       <div
-        className={`mx-auto mt-2 max-w-site overflow-hidden rounded-3xl border border-white/10 bg-ink-800/95 backdrop-blur-xl transition-all duration-500 md:hidden ${
-          open ? 'max-h-96 opacity-100' : 'pointer-events-none max-h-0 opacity-0'
+        className={`overflow-hidden border-t border-white/10 bg-ink transition-[max-height] duration-300 lg:hidden ${
+          open ? 'max-h-[100vh]' : 'max-h-0 border-transparent'
         }`}
       >
-        <div className="flex flex-col p-3">
+        <Container className="flex h-[calc(100vh-72px)] flex-col py-6">
           {links.map((l) => (
             <a
-              key={l.href}
-              href={l.href}
+              key={l.id}
+              href={`#${l.id}`}
               onClick={() => setOpen(false)}
-              className="rounded-2xl px-4 py-3.5 text-base font-medium text-white/80 hover:bg-white/5 hover:text-white"
+              className="border-b border-white/10 py-5 font-display text-2xl font-medium text-white"
             >
               {l.label}
             </a>
@@ -108,11 +128,11 @@ const Navbar: React.FC = () => {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3.5 text-sm font-semibold text-ink"
+            className="mt-8 inline-flex items-center justify-center gap-2 bg-ember px-5 py-4 font-medium text-ink"
           >
-            Consult With Us <ArrowRight className="h-3.5 w-3.5" />
+            Contact us <ArrowRight className="h-4 w-4" />
           </a>
-        </div>
+        </Container>
       </div>
     </header>
   );

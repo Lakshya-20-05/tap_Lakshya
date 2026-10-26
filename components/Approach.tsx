@@ -1,93 +1,64 @@
 import React from 'react';
-import { Eyebrow } from './ui';
+import { Container, SectionHeader } from './ui';
 
 const tracks = [
   {
     no: '01',
-    audience: 'For institutions',
-    title: 'Institutional Advancement',
-    desc: 'We equip colleges with the corporate relations and recruitment machinery of a Tier-1 institution. We build the brand, the board, and the bridges.',
-    items: ['Placement Board Outsourcing', 'Corporate Relation Management', 'Institutional Branding'],
+    title: 'For colleges',
+    desc: 'We set up and run the corporate relations and recruitment process that a Tier-1 college would have, and help the institution build its reputation with employers.',
+    items: ['Placement office outsourcing', 'Corporate relationship management', 'Institutional branding'],
     dark: false,
   },
   {
     no: '02',
-    audience: 'For students',
-    title: 'Talent Engineering',
-    desc: 'We refine untapped student potential into job-ready talent for startups and Fortune 500 firms alike. Our students don’t just apply — they fit.',
-    items: ['Skill Alignment Pipelines', 'Interview Training Ecosystems', 'Professional Readiness'],
+    title: 'For students',
+    desc: 'We train students in the skills and interview preparation that employers ask for, so they are ready for roles at startups and Fortune 500 companies alike.',
+    items: ['Skill alignment programmes', 'Interview training', 'Professional readiness'],
     dark: true,
   },
 ];
 
-const Check: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
-    <path d="M3.5 8.5l3 3 6-7" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
 const Approach: React.FC = () => {
   return (
-    <section id="approach" className="relative overflow-hidden bg-paper-200 py-28 text-ink md:py-36">
-      <div className="bg-grid-light mask-fade pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto max-w-site px-6">
-        <div className="reveal mx-auto max-w-2xl text-center">
-          <Eyebrow>Our strategy</Eyebrow>
-          <h2 className="mt-6 text-3xl font-semibold leading-[1.1] tracking-[-0.03em] md:text-5xl">
-            Dual-impact <span className="font-serif text-[1.1em] font-normal italic">positioning</span>
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-ink/55 md:text-lg">
-            One partnership, two outcomes — stronger institutions and job-ready graduates.
-          </p>
-        </div>
+    <section id="approach" className="bg-paper-200 py-24 text-ink md:py-32">
+      <Container>
+        <SectionHeader
+          title="Two sides of every partnership"
+          intro="We work with the college and its students at the same time. Stronger institutions attract better recruiters, and better-prepared students convert those opportunities into offers."
+        />
 
-        <div className="mt-16 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {tracks.map((t, i) => (
+        <div className="mt-16 grid grid-cols-1 md:mt-20 md:grid-cols-2">
+          {tracks.map((t) => (
             <article
               key={t.no}
-              className={`reveal reveal-delay-${i + 1} relative flex flex-col overflow-hidden rounded-[28px] p-8 transition-shadow duration-500 md:p-12 ${
-                t.dark
-                  ? 'bg-ink text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]'
-                  : 'border border-paper-300 bg-white shadow-[0_30px_80px_-40px_rgba(0,0,0,0.15)] hover:shadow-[0_30px_80px_-30px_rgba(0,0,0,0.2)]'
+              className={`reveal flex flex-col p-8 sm:p-10 xl:p-14 ${
+                t.dark ? 'bg-ink text-white' : 'border border-paper-300 bg-white md:border-r-0'
               }`}
             >
-              {t.dark && (
-                <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-ember/20 blur-[90px]" />
-              )}
-              <div className="relative flex items-center justify-between">
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    t.dark ? 'bg-white/10 text-white/70' : 'bg-paper-200 text-ink/60'
-                  }`}
-                >
-                  {t.audience}
-                </span>
-                <span className={`font-serif text-5xl italic ${t.dark ? 'text-white/20' : 'text-ink/15'}`}>{t.no}</span>
-              </div>
-
-              <h3 className="relative mt-12 text-2xl font-semibold tracking-tight md:text-3xl">{t.title}</h3>
-              <p className={`relative mt-4 text-base leading-relaxed md:text-lg ${t.dark ? 'text-white/55' : 'text-ink/60'}`}>
+              <span className={`font-display text-sm font-semibold ${t.dark ? 'text-ember' : 'text-ember-600'}`}>
+                {t.no}
+              </span>
+              <h3 className="mt-6 font-display text-3xl font-semibold tracking-[-0.02em] md:text-4xl">{t.title}</h3>
+              <p className={`mt-5 max-w-xl text-lg leading-relaxed ${t.dark ? 'text-white/65' : 'text-ink/65'}`}>
                 {t.desc}
               </p>
-
-              <ul className={`relative mt-10 space-y-3 border-t pt-8 ${t.dark ? 'border-white/10' : 'border-paper-300'}`}>
+              <ul className={`mt-auto pt-12 ${t.dark ? 'text-white' : 'text-ink'}`}>
                 {t.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm font-medium">
-                    <span
-                      className={`grid h-6 w-6 place-items-center rounded-full ${
-                        t.dark ? 'bg-ember/15 text-ember-400' : 'bg-ink text-white'
-                      }`}
-                    >
-                      <Check className="h-3 w-3" />
-                    </span>
+                  <li
+                    key={item}
+                    className={`flex items-center justify-between border-t py-4 text-base font-medium ${
+                      t.dark ? 'border-white/15' : 'border-paper-300'
+                    }`}
+                  >
                     {item}
+                    <span className="h-1.5 w-1.5 bg-ember" />
                   </li>
                 ))}
               </ul>
             </article>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

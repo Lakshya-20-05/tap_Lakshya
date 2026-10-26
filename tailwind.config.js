@@ -4,9 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+        display: ['Archivo', 'system-ui', 'sans-serif'],
       },
       colors: {
         ink: {
@@ -28,9 +27,6 @@ export default {
           500: '#F97316',
           600: '#EA580C',
         },
-      },
-      maxWidth: {
-        site: '76rem',
       },
     },
   },

@@ -1,70 +1,47 @@
 import React from 'react';
-import { ArrowUpRight, Eyebrow, Icon } from './ui';
+import { Container, SectionHeader } from './ui';
 
 const services = [
   {
-    icon: 'building',
-    label: 'Institutional Relations',
-    title: 'Placement Outsourcing & Corporate Relations',
-    desc: 'End-to-end management of the recruitment lifecycle, acting as the primary liaison between your institution and global firms.',
+    title: 'Placement outsourcing and corporate relations',
+    desc: 'We manage the recruitment cycle end to end and act as the main point of contact between your college and hiring companies.',
   },
   {
-    icon: 'doc',
-    label: 'Student Preparation',
-    title: 'CV Architecture & Interview Strategy',
-    desc: 'Moving beyond basic templates to build narrative-driven CVs and interview skills that stand up to consulting-grade scrutiny.',
+    title: 'CV and interview preparation',
+    desc: 'Students build CVs around their real projects and practise interviews in the formats used by consulting and corporate recruiters.',
   },
   {
-    icon: 'link',
-    label: 'Market Alignment',
-    title: 'Skill Optimization & Partner Integration',
-    desc: 'Curating student skillsets directly aligned with the specific technical and cultural requirements of our partner firms.',
+    title: 'Skill alignment and partner integration',
+    desc: 'We match student training to the technical and workplace requirements of our partner companies.',
   },
   {
-    icon: 'target',
-    label: 'Strategic Outcomes',
-    title: 'Role-Fit Placement Excellence',
-    desc: 'We prioritize precision over volume. Our goal is not mass placement, but the right role for the right individual.',
+    title: 'Role-fit placement',
+    desc: 'We place each student in a role that suits their skills and goals. Fit matters more to us than the number of offers.',
   },
 ];
 
 const WhatWeDo: React.FC = () => {
   return (
-    <section id="services" className="bg-paper py-28 text-ink md:py-36">
-      <div className="mx-auto max-w-site px-6">
-        <div className="reveal grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <Eyebrow>Our services</Eyebrow>
-            <h2 className="mt-6 text-3xl font-semibold leading-[1.1] tracking-[-0.03em] md:text-5xl">
-              Operational excellence in{' '}
-              <span className="font-serif text-[1.1em] font-normal italic">recruitment.</span>
-            </h2>
-          </div>
-          <p className="text-base leading-relaxed text-ink/55 lg:col-span-4 lg:col-start-9">
-            Four integrated services that cover the full journey — from the institution&rsquo;s first corporate
-            conversation to a student&rsquo;s signed offer.
-          </p>
-        </div>
+    <section id="services" className="bg-paper py-24 text-ink md:py-32">
+      <Container>
+        <SectionHeader
+          title="What we do"
+          intro="Four services that cover the placement cycle, from the first conversation with a recruiter to a signed offer letter."
+        />
 
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="mt-16 grid grid-cols-1 gap-px border border-paper-300 bg-paper-300 sm:grid-cols-2 md:mt-20 xl:grid-cols-4">
           {services.map((s, i) => (
             <article
               key={s.title}
-              className={`reveal reveal-delay-${(i % 2) + 1} group relative flex flex-col rounded-3xl border border-paper-300 bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-ink/15 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10`}
+              className="reveal group flex flex-col bg-paper p-8 transition-colors duration-300 hover:bg-white xl:min-h-[360px] xl:p-10"
             >
-              <div className="flex items-start justify-between">
-                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-paper-200 text-ink transition-colors duration-500 group-hover:bg-ink group-hover:text-ember-400">
-                  <Icon name={s.icon} className="h-5 w-5" />
-                </span>
-                <ArrowUpRight className="h-5 w-5 text-ink/20 transition-all duration-500 group-hover:text-ember" />
-              </div>
-              <div className="mt-10 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40">{s.label}</div>
-              <h3 className="mt-3 text-xl font-semibold leading-snug tracking-tight md:text-2xl">{s.title}</h3>
-              <p className="mt-4 text-[15px] leading-relaxed text-ink/60">{s.desc}</p>
+              <span className="font-display text-sm font-semibold text-ember-600">0{i + 1}</span>
+              <h3 className="mt-6 font-display text-2xl font-semibold leading-tight tracking-[-0.015em]">{s.title}</h3>
+              <p className="mt-auto pt-8 text-base leading-relaxed text-ink/65">{s.desc}</p>
             </article>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
