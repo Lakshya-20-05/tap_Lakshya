@@ -17,7 +17,7 @@ const WhyAscend: React.FC = () => {
             style={{ '--i': 0 } as React.CSSProperties}
             className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.025em] md:text-5xl xl:text-6xl"
           >
-            Why colleges work with <span className="mark">Ascend</span>
+            Why colleges work with <span className="mark">ASCEND</span>
           </h2>
           <div style={{ '--i': 1 } as React.CSSProperties} className="md:justify-self-end">
             <p className="max-w-2xl text-lg leading-relaxed text-white/60">

@@ -14,7 +14,7 @@ const Mission: React.FC = () => {
           </h2>
           <div style={{ '--i': 1 } as React.CSSProperties} className="space-y-6 text-lg leading-relaxed text-ink/70 md:text-xl">
             <p>
-              Ascend works with colleges in emerging cities to run their placement function. We handle corporate
+              ASCEND works with colleges in emerging cities to run their placement function. We handle corporate
               outreach, recruiter relationships and student preparation, the same work a Tier-1 placement office does.
             </p>
             <p>

@@ -45,7 +45,7 @@ export const Dot: React.FC<{ className?: string }> = ({ className = 'bg-ember' }
 );
 
 export const Logo: React.FC<{ className?: string }> = ({ className = 'h-7' }) => (
-  <img src={`${import.meta.env.BASE_URL}ascend-logo.png`} alt="Ascend" width={666} height={140} className={`w-auto select-none ${className}`} draggable={false} />
+  <img src={`${import.meta.env.BASE_URL}ascend-logo.png`} alt="ASCEND" width={666} height={140} className={`w-auto select-none ${className}`} draggable={false} />
 );
 
 /** Pulls an element slightly toward the cursor while hovered (fine pointers only). */

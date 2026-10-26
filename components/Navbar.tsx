@@ -5,7 +5,7 @@ const links = [
   { id: 'mission', label: 'About' },
   { id: 'approach', label: 'Approach' },
   { id: 'services', label: 'Services' },
-  { id: 'why', label: 'Why Ascend' },
+  { id: 'why', label: 'Why ASCEND' },
   { id: 'philosophy', label: 'Philosophy' },
 ];
 

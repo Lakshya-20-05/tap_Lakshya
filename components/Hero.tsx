@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
       <Container className="pb-16 pt-20 md:pb-20 md:pt-28 xl:pt-36">
         <h1
           ref={titleRef}
-          className="font-display text-[clamp(2.75rem,8.4vw,9.5rem)] font-semibold leading-[0.95] tracking-[-0.04em] will-change-transform"
+          className="font-display text-[clamp(2.75rem,7.6vw,9rem)] font-semibold leading-[0.98] tracking-[-0.045em] will-change-transform"
         >
           {lines.map((line, li) => (
             <React.Fragment key={li}>
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
           <div className="draw absolute inset-x-0 top-0 h-px bg-white/20" />
           <div className="grid grid-cols-1 gap-10 pt-10 md:grid-cols-2 md:items-end">
             <p className="fade-up max-w-2xl text-lg leading-relaxed text-white/65 md:text-xl" style={{ animationDelay: '0.7s' }}>
-              Ascend runs placements for colleges in emerging cities. We connect their students with employers and
+              ASCEND runs placements for colleges in emerging cities. We connect their students with employers and
               prepare them for the roles those employers are hiring for.
             </p>
             <div className="fade-up flex flex-col gap-3 sm:flex-row md:justify-end" style={{ animationDelay: '0.85s' }}>

@@ -5,7 +5,7 @@ const explore = [
   { href: '#mission', label: 'About' },
   { href: '#approach', label: 'Approach' },
   { href: '#services', label: 'Services' },
-  { href: '#why', label: 'Why Ascend' },
+  { href: '#why', label: 'Why ASCEND' },
   { href: '#philosophy', label: 'Philosophy' },
 ];
 
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
             </h2>
             <div style={{ '--i': 1 } as React.CSSProperties} className="md:justify-self-end">
               <p className="max-w-xl text-lg leading-relaxed text-ink/75">
-                Tell us about your college and its students. We will explain how a partnership with Ascend would work
+                Tell us about your college and its students. We will explain how a partnership with ASCEND would work
                 for you.
               </p>
               <Button href="#" variant="dark" className="mt-8">
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-white/10 py-8 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>&copy; 2025 Ascend Institutional Recruitment. All rights reserved.</p>
+          <p>&copy; 2025 ASCEND Institutional Recruitment. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="link-underline hover:text-white">Privacy</a>
             <a href="#" className="link-underline hover:text-white">Terms</a>
